@@ -1,7 +1,9 @@
 from neo4j import GraphDatabase
 
-uri = "neo4j://localhost:7687"
-driver = GraphDatabase.driver(uri, auth=("neo4j", "neo4jqwert"))
+# uri = "neo4j://localhost:7687"
+# driver = GraphDatabase.driver(uri, auth=("neo4j", "neo4jqwert"))
+uri = "neo4j://35.226.169.213:7687"
+driver = GraphDatabase.driver(uri, auth=("neo4j", "neo4jtest"))
 
 def create_person(tx, name):
     tx.run("CREATE (a:Person {name: $name})", name=name)
