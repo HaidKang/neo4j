@@ -5,10 +5,9 @@ from neo4j import AsyncGraphDatabase
 import sys
 import os
 
-# Add the parent directory to the system path
-# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# 상대 경로를 사용하여 config 폴더 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from config import DB_CONFIG  # 별도 설정 파일에서 접속 정보 불러오기
+from config.dbconfig import DB_CONFIG  # 별도 설정 파일에서 접속 정보 불러오기
 
 # 로그 파일 설정
 LOG_FILE = "database_test_async.log"
@@ -33,7 +32,7 @@ def get_driver(uri, auth):
 # XML 파일에서 쿼리 읽기
 def get_query_from_xml(query_id):
     try:
-        tree = ET.parse('../queries/queries.xml')
+        tree = ET.parse(os.path.abspath(os.path.join(os.path.dirname(__file__), '../queries/queries.xml')))
         root = tree.getroot()
         for query in root.findall('query'):
             if query.get('id') == query_id:
