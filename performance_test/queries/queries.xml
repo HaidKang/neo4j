@@ -1,5 +1,5 @@
 <queries>
     <query id="testQuery">
-        CYPHER runtime=parallel MATCH (n) RETURN DISTINCT labels(n), size(labels(n)), count(*)
+        MATCH (n) RETURN DISTINCT labels(n), size(labels(n)), count(*)
     </query>
 </queries>

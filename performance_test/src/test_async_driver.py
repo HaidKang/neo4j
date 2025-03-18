@@ -56,7 +56,7 @@ async def test_database_connection(uri, auth, database):
             if query:
                 result = await session.run(query)
                 records = [record async for record in result]
-                log_message(f"Test Query Result from {database} database: {records}")
+                # log_message(f"Test Query Result from {database} database: {records}")
             else:
                 log_message(f"Query not found in XML for {database} database.")
     except Exception as e:
@@ -72,7 +72,7 @@ async def run_multiple_tests(concurrent_tasks):
     await asyncio.gather(*tasks)
 
 async def main():
-    await run_multiple_tests(concurrent_tasks=1)  # 동시 실행할 개수 지정
+    await run_multiple_tests(concurrent_tasks=12)  # 동시 실행할 개수 지정
 
 if __name__ == "__main__":
     asyncio.run(main())

@@ -41,9 +41,9 @@ def test_database_connection(uri, auth, database):
     try:
         with driver.session(database=database) as session:
             # result = session.run("MATCH (n) RETURN DISTINCT labels(n), size(labels(n)), count(*)")
-            result = session.run("CYPHER runtime=parallel MATCH (n) RETURN DISTINCT labels(n), size(labels(n)), count(*)")
+            result = session.run("Cypher=parallel MATCH (n) RETURN DISTINCT labels(n), size(labels(n)), count(*)")
             records = [record for record in result]
-            log_message(f"Test Query Result from {database} database: {records}")
+            # log_message(f"Test Query Result from {database} database: {records}")
 
     except Exception as e:
         log_message(f"Database Connection Test Failed for {database} database: {e}")
@@ -73,7 +73,7 @@ signal.signal(signal.SIGINT, signal_handler)
 
 if __name__ == "__main__":
     try:
-        run_multiple_tests(concurrent_tasks=1)  # 동시 실행할 개수 지정
+        run_multiple_tests(concurrent_tasks=12)  # 동시 실행할 개수 지정
     except KeyboardInterrupt:
         log_message("Process interrupted. Exiting...")
         sys.exit(0)
