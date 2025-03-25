@@ -1,0 +1,20 @@
+python Client.py &
+python Client.py &
+python Client.py &
+python Client.py &
+python Client.py &
+python Client.py &
+python Client.py &
+python Client.py &
+python Client.py &
+python Client.py &
+python Client.py &
+python Client.py &
+python Client.py &
+python Client.py &
+python Client.py &
+python Client.py &
+python Client.py &
+python Client.py &
+echo "Client started"
+wait

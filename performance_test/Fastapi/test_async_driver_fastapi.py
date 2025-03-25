@@ -7,7 +7,7 @@ import os
 from fastapi import FastAPI, Query
 
 # Add the parent directory of 'src' to the system path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'config')))
 from config import DB_CONFIG  # 별도 설정 파일에서 접속 정보 불러오기
 
 app = FastAPI()
