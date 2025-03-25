@@ -1,0 +1,32 @@
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+python test_async_shared_driver.py &
+echo "All tests started"
+wait

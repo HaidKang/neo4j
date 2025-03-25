@@ -19,7 +19,7 @@ def log_message(message):
 
 # 연결 풀 설정
 config = {
-    "max_connection_pool_size": 50,
+    "max_connection_pool_size": 500,
     "max_connection_lifetime": 1800,  # 30분
     "liveness_check_timeout": 30,  # 30초
     "connection_acquisition_timeout": 30  # 30초
@@ -91,7 +91,7 @@ async def run_multiple_tests(concurrent_tasks):
         await close_driver()
 
 async def main():
-    await run_multiple_tests(concurrent_tasks=12)  # 동시 실행할 개수 지정
+    await run_multiple_tests(concurrent_tasks=500)  # 동시 실행할 개수 지정
 
 if __name__ == "__main__":
     asyncio.run(main())

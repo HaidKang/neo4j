@@ -1,5 +1,26 @@
 <queries>
-    <query id="testQuery">
+    <query id="testQuery_check">
+        <![CDATA[
+        CYPHER runtime=parallel
+        CALL db.relationshipTypes() yield relationshipType as type
+        CALL apoc.cypher.run("MATCH ()-[:" + type + "]-() RETURN count(*) AS count", {}) YIELD value
+        RETURN type, value.count AS count ORDER BY count DESC
+        ]]>
+    </query>
+    <query id="testQuery_middle">
+        <![CDATA[
+        MATCH p= (n:FirstPOL)<-[:MOVES_TO]-(i:Inland) RETURN count(p)
+        ]]>
+    </query>
+    <query id="testQuery_short">
+        <![CDATA[
+        CYPHER runtime=parallel
         MATCH (n) RETURN DISTINCT labels(n), size(labels(n)), count(*)
+        ]]>
+    </query>
+    <query id="testQuery">
+        <![CDATA[
+        MATCH (n) RETURN DISTINCT labels(n), size(labels(n)), count(*)
+        ]]>
     </query>
 </queries>

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package neo4j;
+
+service Neo4jService {
+  rpc ExecuteQuery (QueryRequest) returns (QueryResponse);
+}
+
+message QueryRequest {
+  string query = 1;
+}
+
+message QueryResponse {
+  string result = 1;
+}

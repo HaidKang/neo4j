@@ -72,7 +72,7 @@ async def run_multiple_tests(concurrent_tasks):
     await asyncio.gather(*tasks)
 
 async def main():
-    await run_multiple_tests(concurrent_tasks=12)  # 동시 실행할 개수 지정
+    await run_multiple_tests(concurrent_tasks=500)  # 동시 실행할 개수 지정
 
 if __name__ == "__main__":
     asyncio.run(main())

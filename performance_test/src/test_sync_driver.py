@@ -20,7 +20,7 @@ LOG_FILE = "database_test_sync.log"
 def log_message(message):
     with open(LOG_FILE, "a", encoding="utf-8") as log_file:
         log_file.write(f"{message}\n")
-
+    print(message)  # 필요하면 터미널에도 출력
 # 연결 풀 설정
 config = {
     "max_connection_pool_size": 50,        # default : 100
@@ -41,7 +41,11 @@ def test_database_connection(uri, auth, database):
     try:
         with driver.session(database=database) as session:
             # result = session.run("MATCH (n) RETURN DISTINCT labels(n), size(labels(n)), count(*)")
-            result = session.run("Cypher=parallel MATCH (n) RETURN DISTINCT labels(n), size(labels(n)), count(*)")
+            # result = session.run("cypher=parallel  MATCH (n) RETURN DISTINCT labels(n), size(labels(n)), count(*)")
+            query = """
+            cypher=parallel  MATCH (n) RETURN DISTINCT labels(n), size(labels(n)), count(*)
+            """
+            result = session.run(query)
             records = [record for record in result]
             # log_message(f"Test Query Result from {database} database: {records}")
 

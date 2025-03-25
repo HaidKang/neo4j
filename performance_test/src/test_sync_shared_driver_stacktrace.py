@@ -50,7 +50,7 @@ def test_database_connection(database):
     try:
         with shared_driver.session(database=database) as session:
             result = session.run("MATCH (n) RETURN DISTINCT labels(n), size(labels(n)), count(*)")
-            records = [record for record in result]
+            # records = [record for record in result]
             log_message(f"Test Query Result from {database} database: {records}")
     except Exception as e:
         log_message(f"Database Connection Test Failed for {database} database: {e}")
