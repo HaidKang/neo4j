@@ -7,19 +7,19 @@
         RETURN type, value.count AS count ORDER BY count DESC
         ]]>
     </query>
-    <query id="testQuery_middle">
+    <query id="testQuery">
         <![CDATA[
         MATCH p= (n:FirstPOL)<-[:MOVES_TO]-(i:Inland) RETURN count(p)
         ]]>
     </query>
     <query id="testQuery_short">
         <![CDATA[
-        CYPHER runtime=parallel
-        MATCH (n) RETURN DISTINCT labels(n), size(labels(n)), count(*)
+        MATCH (n) RETURN count(n)
         ]]>
     </query>
-    <query id="testQuery">
+    <query id="testQuery_long">
         <![CDATA[
+        CYPHER runtime=parallel
         MATCH (n) RETURN DISTINCT labels(n), size(labels(n)), count(*)
         ]]>
     </query>

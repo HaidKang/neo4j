@@ -38,32 +38,14 @@ def test_database_connection(uri, auth, database):
         response["duration"] = round(end_time - start_time, 2)
     return response
 
-def run_multiple_tests(item_id):
-    async def wrapper(idx):
-        return await test_database_connection(DB_CONFIG["uri"], DB_CONFIG["auth"], DB_CONFIG["database"], item_id, idx)
-
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    tasks = [loop.create_task(wrapper(i)) for i in range(20)]
-    results = loop.run_until_complete(asyncio.gather(*tasks))
-    loop.close()
-    return results
-
-@app.get("/")
-def root():
-    return {"message": "Welcome to the FastAPI synchronous testing application. Visit /docs for API documentation."}
+# 여러 개의 테스트 실행 함수
+def run_multiple_tests(concurrent_tasks):
+    with ThreadPoolExecutor(max_workers=concurrent_tasks) as executor:
+        futures = [executor.submit(test_database_connection, DB_CONFIG["uri"], DB_CONFIG["auth"], DB_CONFIG["database"]) for _ in range(concurrent_tasks)]
+        return [future.result() for future in futures]
 
 @app.get("/test-sync-db")
 def test_db():
     concurrent_tasks = 20  # 동시 실행할 개수 지정
     results = run_multiple_tests(concurrent_tasks)
     return results
-
-@app.get("/test-sync-db-single")
-def test_single_db():
-    result = test_database_connection(DB_CONFIG["uri"], DB_CONFIG["auth"], DB_CONFIG["database"])
-    return result
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
